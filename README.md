@@ -2,6 +2,8 @@
 
 API that implements user-service, notification-service with Kafka message broker communiation.
 
+![CI](https://github.com/TomJan533/tsMicroComm/actions/workflows/ci.yml/badge.svg)
+
 ## Project Structure Blueprint
 
 Covers most important files and folders.
