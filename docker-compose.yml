@@ -1,0 +1,32 @@
+services:
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27019/userdb
+    depends_on:
+      - mongo
+    networks:
+      - ts-micro-comm-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 5s
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - ts-micro-comm-network
+
+networks:
+  ts-micro-comm-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

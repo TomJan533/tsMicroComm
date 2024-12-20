@@ -1,0 +1,46 @@
+name: CI - Unit & Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27019:27019
+        volumes:
+          - mongo-data:/data/db
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./user-service
+
+      - name: Run Unit Tests
+        run: npm run test:unit
+        working-directory: ./user-service
+
+      - name: Run Integration Tests
+        env:
+          MONGO_URI: mongodb://localhost:27019/userdb
+        run: npm run test:integration
+        working-directory: ./user-service
