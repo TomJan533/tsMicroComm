@@ -14,7 +14,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "tests/**/*test.ts"
+    "tests/**/*test.ts",
+    "tests/utils/*.ts",
   ],
   "exclude": [
     "node_modules",
