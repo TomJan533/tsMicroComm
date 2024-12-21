@@ -7,9 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "test:unit": "jest --config ./tests/unit/jest.config.json",
+    "test:unit": "jest --config ./tests/unit/jest.config.json  --passWithNoTests",
     "test:integration": "jest --config ./tests/integration/jest.config.json --passWithNoTests",
-    "test": "npm run test:unit && npm run test:integration",
+    "test:e2e": "jest --config ./tests/e2e/jest.config.json --passWithNoTests",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "build": "tsc",
     "dev": "ts-node dist/src/server.js",
     "start": "node dist/src/server.js"

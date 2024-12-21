@@ -1,4 +1,4 @@
-name: CI - Unit & Integration Tests
+name: CI - Unit, Integration, E2E Tests
 
 on:
   push:
@@ -43,4 +43,10 @@ jobs:
         env:
           MONGO_URI: mongodb://localhost:27019/userdb
         run: npm run test:integration
+        working-directory: ./user-service
+    
+      - name: Run E2E Tests
+        env:
+          MONGO_URI: mongodb://localhost:27019/userdb
+        run: npm run test:e2e
         working-directory: ./user-service
