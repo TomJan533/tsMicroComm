@@ -1,21 +1,21 @@
 import express, { Request, Response } from 'express';
+import { validateMethod } from '../validators/requestMethodValidator';
 
 const router = express.Router();
 
-
-router.post('/createUser', (req: Request, res: Response) => {
+router.all('/createUser', validateMethod(['POST']), (req: Request, res: Response) => {
    res.json({ message: 'createUser' });
 });
 
-router.get('/getUsers', (req: Request, res: Response) => {
+router.all('/getUsers', validateMethod(['GET']), (req: Request, res: Response) => {
     res.json({ message: 'getUsers' });
  });
 
-router.put('/updateUser', (req: Request, res: Response) => {
+router.all('/updateUser', validateMethod(['PUT']), (req: Request, res: Response) => {
     res.json({ message: 'updateUser' });
 });
 
-router.delete('/deleteUser', (req: Request, res: Response) => {
+router.all('/deleteUser', validateMethod(['DELETE']), (req: Request, res: Response) => {
     res.json({ message: 'deleteUser' });
 });
 
