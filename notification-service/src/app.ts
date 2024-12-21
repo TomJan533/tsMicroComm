@@ -1,10 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from "express";
+import healthRouter from "./routes/healthRouter";
 
 const app = express();
 app.use(express.json());
 
-app.get('/health', (req: Request, res: Response) => {
-  res.json({ status: 'OK' });
-});
+app.use(healthRouter);
 
 export default app;
